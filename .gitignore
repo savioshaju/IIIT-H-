@@ -1,0 +1,7 @@
+IndicAccent*
+cache
+venv
+test.py
+data.md
+test
+best_model.safetensors
