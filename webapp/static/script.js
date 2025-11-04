@@ -1,4 +1,3 @@
-// static/script.js
 const uploadBtn = document.getElementById("uploadBtn");
 const fileInput = document.getElementById("fileInput");
 const resultDiv = document.getElementById("result");

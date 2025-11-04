@@ -2,7 +2,9 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
+from sklearn.metrics import classification_report
 import os
+import numpy as np
 
 # ------------------- CONFIG -------------------
 DATA_DIR = "mfcc_features"
@@ -10,7 +12,7 @@ BATCH_SIZE = 64
 EPOCHS = 25
 LR = 1e-3
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-NUM_CLASSES = 6  # gujarati, hindi, kannada, malayalam, tamil, telugu
+NUM_CLASSES = 6  # classes: 0–5
 
 # ------------------- LOAD DATA -------------------
 print("📦 Loading MFCC feature tensors...")
@@ -51,8 +53,7 @@ class MFCC_CNN(nn.Module):
         )
 
     def forward(self, x):
-        # x: [B, 40, T]
-        x = x.unsqueeze(1)  # -> [B, 1, 40, T]
+        x = x.unsqueeze(1)  # [B, 1, 40, T]
         return self.net(x)
 
 # ------------------- TRAINING SETUP -------------------
@@ -74,17 +75,25 @@ for epoch in range(EPOCHS):
         optimizer.step()
         total_loss += loss.item()
 
-    # Validation phase
+    # Validation
     model.eval()
-    correct, total = 0, 0
+    val_preds, val_labels = [], []
+
     with torch.no_grad():
         for X, y in val_loader:
             X, y = X.to(DEVICE), y.to(DEVICE)
             preds = model(X).argmax(1)
-            correct += (preds == y).sum().item()
-            total += y.size(0)
-    acc = correct / total * 100
-    print(f"Epoch {epoch+1:02d}/{EPOCHS} | Loss: {total_loss/len(train_loader):.4f} | Val Acc: {acc:.2f}%")
+            val_preds.extend(preds.cpu().numpy())
+            val_labels.extend(y.cpu().numpy())
+
+    val_preds = np.array(val_preds)
+    val_labels = np.array(val_labels)
+
+    # Metrics
+    acc = (val_preds == val_labels).mean() * 100
+    print(f"\nEpoch {epoch+1:02d}/{EPOCHS} | Loss: {total_loss/len(train_loader):.4f} | Val Acc: {acc:.2f}%")
+    print("📊 Classification Report:")
+    print(classification_report(val_labels, val_preds, digits=4, labels=[0, 1, 2, 3, 4, 5]))
 
 # ------------------- SAVE -------------------
 torch.save(model.state_dict(), "mfcc_baseline_model.pt")
