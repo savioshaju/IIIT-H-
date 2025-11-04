@@ -32,4 +32,5 @@ RUN pip install --upgrade pip setuptools wheel && \
 EXPOSE 5000
 
 # Use Gunicorn for production
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000", "--workers=2", "--threads=2"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+
