@@ -1,9 +1,13 @@
-flask
-gunicorn
-numpy
-soundfile
-
-# Force CPU wheels from PyTorch official index
---extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.2.0+cpu
-torchaudio==2.2.2+cpu
+Flask==3.0.3
+torch==2.5.1+cpu
+torchaudio==2.5.1+cpu
+transformers==4.45.2
+librosa==0.10.2.post1
+numpy==1.26.4
+scipy==1.12.0
+soundfile==0.12.1
+tqdm==4.66.5
+werkzeug==3.0.3
+jinja2==3.1.4
+itsdangerous==2.2.0
+MarkupSafe==2.1.5
