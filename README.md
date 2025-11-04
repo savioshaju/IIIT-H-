@@ -449,7 +449,7 @@ https://your-hosted-video-link.com/demo.mp4
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/savioshaju/IIIT-H-.git](https://github.com/savioshaju/IIIT-H-.git)
+git clone https://github.com/savioshaju/IIIT-H-.git
 cd IIIT-H-
 ```
 ### 2. Environment Setup (Python 3.10 Recommended)
@@ -489,7 +489,7 @@ Your model and audio pipeline use HuBERT feature extraction — you’ll need th
 
 ```bash
 # Windows
-choco install ffmpeg
+winget install ffmpeg  
 
 # Ubuntu / Debian
 sudo apt update
