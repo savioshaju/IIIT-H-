@@ -9,4 +9,4 @@ best_model.safetensors
 hubert_features
 __pycache__
 c.py
-feature*
+*feature*
