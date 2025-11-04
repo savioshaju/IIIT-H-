@@ -1,7 +1,9 @@
 flask
 gunicorn
-torch==2.2.0+cpu
-torchaudio==2.2.2
---extra-index-url https://download.pytorch.org/whl/cpu
 numpy
 soundfile
+
+# Force CPU wheels from PyTorch official index
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.2.0+cpu
+torchaudio==2.2.2+cpu
