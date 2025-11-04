@@ -10,3 +10,5 @@ hubert_features
 __pycache__
 c.py
 *feature*
+!feature_hubert_accent_model*
+!feature_mfcc_accent_model.pt

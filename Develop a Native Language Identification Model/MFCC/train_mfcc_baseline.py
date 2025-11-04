@@ -1,10 +1,12 @@
+import os
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
-from sklearn.metrics import classification_report
-import os
-import numpy as np
+from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # ------------------- CONFIG -------------------
 DATA_DIR = "mfcc_features"
@@ -61,6 +63,8 @@ model = MFCC_CNN().to(DEVICE)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=LR)
 
+train_losses, val_accuracies = [], []
+
 # ------------------- TRAIN LOOP -------------------
 for epoch in range(EPOCHS):
     model.train()
@@ -75,7 +79,7 @@ for epoch in range(EPOCHS):
         optimizer.step()
         total_loss += loss.item()
 
-    # Validation
+    # Validation phase
     model.eval()
     val_preds, val_labels = [], []
 
@@ -89,12 +93,49 @@ for epoch in range(EPOCHS):
     val_preds = np.array(val_preds)
     val_labels = np.array(val_labels)
 
-    # Metrics
     acc = (val_preds == val_labels).mean() * 100
-    print(f"\nEpoch {epoch+1:02d}/{EPOCHS} | Loss: {total_loss/len(train_loader):.4f} | Val Acc: {acc:.2f}%")
+    avg_loss = total_loss / len(train_loader)
+    train_losses.append(avg_loss)
+    val_accuracies.append(acc)
+
+    print(f"\nEpoch {epoch+1:02d}/{EPOCHS} | Loss: {avg_loss:.4f} | Val Acc: {acc:.2f}%")
     print("📊 Classification Report:")
     print(classification_report(val_labels, val_preds, digits=4, labels=[0, 1, 2, 3, 4, 5]))
 
-# ------------------- SAVE -------------------
+# ------------------- CONFUSION MATRIX -------------------
+cm = confusion_matrix(val_labels, val_preds)
+cm_norm = cm.astype('float') / cm.sum(axis=1, keepdims=True)
+
+plt.figure(figsize=(7, 6))
+sns.heatmap(cm_norm, annot=True, fmt=".2f", cmap="Blues",
+            xticklabels=[f"Class {i}" for i in range(NUM_CLASSES)],
+            yticklabels=[f"Class {i}" for i in range(NUM_CLASSES)])
+plt.title("Normalized Confusion Matrix (Validation Set)")
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.tight_layout()
+plt.show()
+
+# ------------------- TRAINING CURVES -------------------
+plt.figure(figsize=(10, 5))
+
+plt.subplot(1, 2, 1)
+plt.plot(train_losses, label="Training Loss", color='red')
+plt.title("Training Loss Over Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.legend()
+
+plt.subplot(1, 2, 2)
+plt.plot(val_accuracies, label="Validation Accuracy (%)", color='blue')
+plt.title("Validation Accuracy Over Epochs")
+plt.xlabel("Epoch")
+plt.ylabel("Accuracy (%)")
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+# ------------------- SAVE MODEL -------------------
 torch.save(model.state_dict(), "mfcc_baseline_model.pt")
 print("\n✅ Training complete. Model saved as 'mfcc_baseline_model.pt'")

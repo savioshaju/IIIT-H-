@@ -10,6 +10,9 @@ from torch.utils.data import TensorDataset, DataLoader, WeightedRandomSampler
 from sklearn.cluster import KMeans
 from sklearn.metrics import classification_report
 from tqdm import tqdm
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 DATA_DIR = "hubert_features"
@@ -215,3 +218,17 @@ with torch.no_grad():
 
 print("\n=== Final Test Classification Report ===")
 print(classification_report(all_true, all_preds, digits=4))
+# Compute confusion matrix
+cm = confusion_matrix(all_true, all_preds)
+cm_norm = cm.astype('float') / cm.sum(axis=1, keepdims=True)
+
+# Plot confusion matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm_norm, annot=True, fmt=".2f", cmap="Blues",
+            xticklabels=[f"Class {i}" for i in range(NUM_CLASSES)],
+            yticklabels=[f"Class {i}" for i in range(NUM_CLASSES)])
+plt.title("Normalized Confusion Matrix")
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.tight_layout()
+plt.show()
