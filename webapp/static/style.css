@@ -1,0 +1,33 @@
+/* static/style.css */
+body {
+  background: #0f1720;
+  color: #e6eef8;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+.container {
+  width: 420px;
+  background: #111827;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  text-align: center;
+}
+h1 { margin: 0 0 14px; font-size: 20px; }
+.section { margin: 14px 0; }
+button {
+  background: #2563eb;
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+button:disabled { background: #374151; cursor: not-allowed; }
+.result { background: #0b1220; padding: 12px; border-radius: 8px; margin-top: 10px; }
+.hidden { display: none; }

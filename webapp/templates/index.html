@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Accent Classifier</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Accent Classifier</h1>
+
+    <section class="section">
+      <h3>Upload audio file</h3>
+      <input id="fileInput" type="file" accept="audio/*" />
+      <button id="uploadBtn">Predict from File</button>
+    </section>
+
+    <section class="section">
+      <h3>Or record from microphone</h3>
+      <button id="recordBtn">🎙️ Start Recording</button>
+      <button id="predictRecordBtn" disabled>Predict Recorded</button>
+      <p id="recStatus"></p>
+    </section>
+
+    <section class="section result hidden" id="result">
+      <h3>Prediction</h3>
+      <p id="accentText"></p>
+      <p id="confidenceText"></p>
+    </section>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

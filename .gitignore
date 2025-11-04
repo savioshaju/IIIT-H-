@@ -5,3 +5,7 @@ test.py
 data.md
 test
 best_model.safetensors
+.gradio
+hubert_features
+__pycache__
+c.py
