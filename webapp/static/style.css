@@ -9,16 +9,25 @@ body {
   height: 100vh;
   margin: 0;
 }
+
 .container {
   width: 420px;
   background: #111827;
   padding: 22px;
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
   text-align: center;
 }
-h1 { margin: 0 0 14px; font-size: 20px; }
-.section { margin: 14px 0; }
+
+h1 {
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+.section {
+  margin: 14px 0;
+}
+
 button {
   background: #2563eb;
   border: none;
@@ -28,6 +37,36 @@ button {
   cursor: pointer;
   margin-left: 8px;
 }
-button:disabled { background: #374151; cursor: not-allowed; }
-.result { background: #0b1220; padding: 12px; border-radius: 8px; margin-top: 10px; }
-.hidden { display: none; }
+
+button:disabled {
+  background: #374151;
+  cursor: not-allowed;
+}
+
+.result {
+  background: #0b1220;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn-outline-primary {
+  border: 2px solid #0d6efd;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.rounded-pill {
+  border-radius: 50px !important;
+}
