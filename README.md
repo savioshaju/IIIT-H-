@@ -7,7 +7,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
 
 ---
 
-## 🎥 Demo Videos
+##  Demo Videos
 
 | Demo | Description | Link |
 |:----:|:-------------|:------|
@@ -45,7 +45,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Visualizations (HuBERT Model)](#visualizations-hubert-model)
 
 - [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
-  - [Demo Videos](#demo-videos)
+  - [Demo Videos](#-demo-videos)
   - [Model (Concise)](#model-concise)
   - [Training Config (Defaults)](#training-config-use-these-exact-defaults)
   - [Run the Web App (Accent-Aware Cuisine Recommendation System)](#run-the-web-app-accent-aware-cuisine-recommendation-system)
@@ -465,7 +465,7 @@ Performance was measured using **accuracy, precision, recall, and F1-score** for
 
 
 
-#  Accent-Aware Cuisine Recommendation — Model & Demo
+# Accent-Aware Cuisine Recommendation — Model & Demo
 
 **One-line:** Real-time accent detection (HuBERT → DANN) that infers regional background and surfaces culturally-relevant cuisine recommendations.
 
@@ -473,7 +473,7 @@ Performance was measured using **accuracy, precision, recall, and F1-score** for
 
 ---
 
-## 🎥 Demo Videos
+## Demo Videos
 
 | Demo | Description | Link |
 |:----:|:-------------|:------|
