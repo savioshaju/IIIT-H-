@@ -44,8 +44,8 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Visualizations](#visualizations)
   - [Visualizations (HuBERT Model)](#visualizations-hubert-model)
 
-- [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
-  - [Demo Videos](#-demo-videos-1)
+- [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3accent-aware-cuisine-recommendation--model--demo)
+  - [Demo Videos](#demo-videos-1)
   - [Model (Concise)](#model-concise)
   - [Training Config (Defaults)](#training-config-use-these-exact-defaults)
   - [Run the Web App (Accent-Aware Cuisine Recommendation System)](#run-the-web-app-accent-aware-cuisine-recommendation-system)
