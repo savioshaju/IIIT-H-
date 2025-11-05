@@ -3,6 +3,37 @@
 This project leverages **HuBERT (Hidden Unit BERT)** to identify the **native language (L1)** of Indian English speakers based on their speech characteristics.  
 The model analyzes **acoustic patterns** from English utterances to detect subtle regional accent variations across Indian states.  
 It contributes to building **accent-aware AI systems**, enhancing **speech recognition**, **speaker profiling**, and **voice adaptation** in multilingual contexts.
+
+## Table of Contents
+- [Objective](#objective)
+- [1 Develop a Native Language Identification Model](#1-develop-a-native-language-identification-model)
+  - [Pipeline Overview](#pipeline-overview)
+  - [Model Development & Training](#model-development--training)
+  - [Final Classification Reports](#final-classification-reports)
+  - [HuBERT Layer-wise Performance](#hubert-layer-wise-performance)
+  - [Confusion Matrix — HuBERT + DANN Model](#confusion-matrix--hubert--dann-model)
+  - [Confusion Matrix — MFCC Baseline Model](#confusion-matrix--mfcc-baseline-model)
+  - [Key Takeaways](#key-takeaways)
+  - [Dataset — IndicAccentDB_16k](#dataset--indicaccentdb_16k)
+- [2 Generalization Across Age Groups](#2-generalization-across-age-groups)
+  - [Objective](#objective-1)
+  - [Experimental Setup](#experimental-setup)
+  - [Model Training](#model-training)
+  - [Results Summary](#results-summary)
+  - [Visualizations](#visualizations)
+  - [Visualizations (HuBERT Model)](#visualizations-hubert-model)
+- [3 Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
+  - [Model (concise)](#model-concise)
+  - [Training config (use these exact defaults)](#training-config-use-these-exact-defaults)
+  - [Run the Web App (Accent-Aware Cuisine Recommendation System)](#run-the-web-app-accent-aware-cuisine-recommendation-system)
+    - [1 Clone the Repository](#1-clone-the-repository)
+    - [2 Environment Setup (Python 310 Recommended)](#2-environment-setup-python-310-recommended)
+    - [3 Install Requirements](#3-install-requirements)
+    - [4 Install Required System Packages](#4-install-required-system-packages)
+    - [5 Run the Web Application](#5-run-the-web-application)
+    - [6 Open in Browser](#6-open-in-browser)
+
+      
 ##  Objective
 
 The primary objective of this project is to develop a system that can identify the **native language (L1)** of Indian English speakers by analyzing the **accent patterns** present in their speech.
