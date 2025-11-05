@@ -4,34 +4,54 @@ This project leverages **HuBERT (Hidden Unit BERT)** to identify the **native la
 The model analyzes **acoustic patterns** from English utterances to detect subtle regional accent variations across Indian states.  
 It contributes to building **accent-aware AI systems**, enhancing **speech recognition**, **speaker profiling**, and **voice adaptation** in multilingual contexts.
 
+
+---
+
+## 🎥 Demo Videos
+
+| Demo | Description | Link |
+|:----:|:-------------|:------|
+| 🗣️ **Live Voice Input (Accent Detection)** | Real-time accent detection using HuBERT + DANN — directly from microphone input. | [Watch on Google Drive](https://drive.google.com/file/d/1N0MV_tPYmuQjKEBykLVq1lEmdbkEPUFZ/view?usp=sharing) |
+| 🎧 **Uploaded Audio Input (Accent Detection)** | Accent classification when a pre-recorded audio file is uploaded. | [Watch on Google Drive](https://drive.google.com/file/d/1GTEww7OIHgRHka9tYbnrhKgUShnpO_wn/view?usp=sharing) |
+
+---
+
 ## Table of Contents
 - [Objective](#objective)
-- [1 Develop a Native Language Identification Model](#1-develop-a-native-language-identification-model)
+- [1. Develop a Native Language Identification Model](#1-develop-a-native-language-identification-model)
+  - [Goal](#goal)
   - [Pipeline Overview](#pipeline-overview)
   - [Model Development & Training](#model-development--training)
+    - [HuBERT-Based Model (Self-Supervised Representations)](#hubert-based-model-self-supervised-representations)
+    - [MFCC-Based Model (Traditional Acoustic Features)](#mfcc-based-model-traditional-acoustic-features)
   - [Final Classification Reports](#final-classification-reports)
   - [HuBERT Layer-wise Performance](#hubert-layer-wise-performance)
   - [Confusion Matrix — HuBERT + DANN Model](#confusion-matrix--hubert--dann-model)
   - [Confusion Matrix — MFCC Baseline Model](#confusion-matrix--mfcc-baseline-model)
   - [Key Takeaways](#key-takeaways)
   - [Dataset — IndicAccentDB_16k](#dataset--indicaccentdb_16k)
-- [2 Generalization Across Age Groups](#2-generalization-across-age-groups)
+- [2. Generalization Across Age Groups](#2-generalization-across-age-groups)
   - [Objective](#objective-1)
   - [Experimental Setup](#experimental-setup)
-  - [Model Training](#model-training)
+  - [Feature Extraction](#1️-feature-extraction)
+  - [Model Training](#2-model-training)
+  - [Evaluation Metrics](#evaluation-metrics)
   - [Results Summary](#results-summary)
+  - [MFCC-Based Model](#mfcc-based-model)
+  - [HuBERT-Based Model](#hubert-based-model)
   - [Visualizations](#visualizations)
   - [Visualizations (HuBERT Model)](#visualizations-hubert-model)
-- [3 Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
-  - [Model (concise)](#model-concise)
-  - [Training config (use these exact defaults)](#training-config-use-these-exact-defaults)
+- [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
+  - [Demo Videos](#🎥-demo-videos)
+  - [Model (Concise)](#model-concise)
+  - [Training Config (Defaults)](#training-config-use-these-exact-defaults)
   - [Run the Web App (Accent-Aware Cuisine Recommendation System)](#run-the-web-app-accent-aware-cuisine-recommendation-system)
-    - [1 Clone the Repository](#1-clone-the-repository)
-    - [2 Environment Setup (Python 310 Recommended)](#2-environment-setup-python-310-recommended)
-    - [3 Install Requirements](#3-install-requirements)
-    - [4 Install Required System Packages](#4-install-required-system-packages)
-    - [5 Run the Web Application](#5-run-the-web-application)
-    - [6 Open in Browser](#6-open-in-browser)
+    - [1. Clone the Repository](#1-clone-the-repository)
+    - [2. Environment Setup (Python 310 Recommended)](#2-environment-setup-python-310-recommended)
+    - [3. Install Requirements](#3-install-requirements)
+    - [4. Install Required System Packages](#4-install-required-system-packages)
+    - [5. Run the Web Application](#5-run-the-web-application)
+    - [6. Open in Browser](#6-open-in-browser)
 
       
 ##  Objective
@@ -437,12 +457,17 @@ Performance was measured using **accuracy, precision, recall, and F1-score** for
 
 
 
-**Watch the demo video:**
-https://your-hosted-video-link.com/demo.mp4
+---
 
+## 🎥 Demo Videos
 
+| Demo | Description | Link |
+|:----:|:-------------|:------|
+| 🗣️ **Live Voice Input (Accent Detection)** | Real-time accent detection using HuBERT + DANN — directly from microphone input. | [Watch on Google Drive](https://drive.google.com/file/d/1N0MV_tPYmuQjKEBykLVq1lEmdbkEPUFZ/view?usp=sharing) |
+| 🎧 **Uploaded Audio Input (Accent Detection)** | Accent classification when a pre-recorded audio file is uploaded. | [Watch on Google Drive](https://drive.google.com/file/d/1GTEww7OIHgRHka9tYbnrhKgUShnpO_wn/view?usp=sharing) |
 
 ---
+
 
 ##  Model (concise)
 
