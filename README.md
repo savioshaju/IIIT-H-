@@ -45,7 +45,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Visualizations (HuBERT Model)](#visualizations-hubert-model)
 
 - [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
-  - [Demo Videos](#🎥-demo-videos)
+  - [Demo Videos](#demo-videos)
   - [Model (Concise)](#model-concise)
   - [Training Config (Defaults)](#training-config-use-these-exact-defaults)
   - [Run the Web App (Accent-Aware Cuisine Recommendation System)](#run-the-web-app-accent-aware-cuisine-recommendation-system)
@@ -56,7 +56,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
     - [5. Run the Web Application](#5-run-the-web-application)
     - [6. Open in Browser](#6-open-in-browser)
 
-- [4 .Word-Level vs. Sentence-Level Accent Detection](#-word-level-vs-sentence-level-accent-detection)
+- [4 .Word-Level vs. Sentence-Level Accent Detection](#4-word-level-vs-sentence-level-accent-detection)
   - [Dataset Preparation](#1️-dataset-preparation)
   - [Feature Extraction](#2️-feature-extraction)
   - [Model Architecture](#3️-model-architecture)
@@ -597,7 +597,7 @@ You’ll get the main interface where users can:
 * Record or upload an English phrase.
 * System detects accent → infers region → shows top cuisine recommendations.
 
-##  Word-Level vs. Sentence-Level Accent Detection
+## 4 Word-Level vs. Sentence-Level Accent Detection
 
 This section investigates **accent classification at two linguistic granularities** using HuBERT embeddings: word-level and sentence-level. The goal is to analyze how segment length and context affect model performance.
 
