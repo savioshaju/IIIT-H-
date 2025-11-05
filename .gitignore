@@ -12,3 +12,7 @@ c.py
 *feature*
 !feature_hubert_accent_model*
 !feature_mfcc_accent_model.pt
+!extract_hubert_features.py
+!features_mfcc_accent_model.pt
+!hubertfeature.py
+!mfccfeature.py

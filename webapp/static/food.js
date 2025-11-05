@@ -12,7 +12,6 @@ const clearBtn = document.getElementById("clearBtn");
 let mediaRecorder = null;
 let recordedChunks = [];
 
-// ---------------- POST AUDIO TO SERVER ----------------
 async function postAudioBlob(blob) {
   try {
     recStatus.textContent = "Processing...";
@@ -38,7 +37,6 @@ async function postAudioBlob(blob) {
   }
 }
 
-// ---------------- RECORDING LOGIC ----------------
 recordBtn.addEventListener("click", async () => {
   if (!mediaRecorder || mediaRecorder.state === "inactive") {
     try {
@@ -70,14 +68,12 @@ recordBtn.addEventListener("click", async () => {
   }
 });
 
-// ---------------- PREDICT AFTER RECORD ----------------
 predictRecordBtn.addEventListener("click", async () => {
   if (!recordedChunks.length) return alert("No recording found.");
   const blob = new Blob(recordedChunks, { type: "audio/wav" });
   await postAudioBlob(blob);
 });
 
-// ---------------- FILE UPLOAD LOGIC ----------------
 uploadBtn.addEventListener("click", () => fileInput.click());
 
 fileInput.addEventListener("change", async () => {
@@ -90,12 +86,11 @@ fileInput.addEventListener("change", async () => {
 
   await postAudioBlob(file);
 
-  recStatus.textContent = "Ready ✅";
+  recStatus.textContent = "Ready ";
   recordBtn.disabled = false;
   uploadBtn.disabled = false;
 });
 
-// ---------------- CLEAR RESULTS ----------------
 clearBtn.addEventListener("click", () => {
   resultDiv.classList.add("d-none");
   accentText.textContent = "";
@@ -105,7 +100,6 @@ clearBtn.addEventListener("click", () => {
   recordedChunks = [];
   predictRecordBtn.disabled = true;
 
-  // Hide all state cards
   const allStates = ["kerala", "tamil", "karnataka", "andra", "jharkhand", "gujarat"];
   allStates.forEach((state) => {
     document.querySelectorAll(`.${state}`).forEach((card) => {
@@ -115,7 +109,6 @@ clearBtn.addEventListener("click", () => {
   document.querySelector(".state").style.display = "none";
 });
 
-// ---------------- DEMO INPUT ----------------
 document.querySelector(".demo-btn").addEventListener("click", function () {
   const inputValue = document.querySelector(".demo-i").value.trim();
   const allStates = ["kerala", "tamil", "karnataka", "andra", "jharkhand", "gujarat"];
@@ -152,7 +145,6 @@ document.querySelector(".demo-btn").addEventListener("click", function () {
   document.querySelector(".state").style.display = "inline";
 });
 
-// ---------------- HANDLE ACCENT RESULT ----------------
 function handleAccentResult(accentNum) {
   const orderedStates = ["andra", "gujarat", "jharkhand", "karnataka", "kerala", "tamil"];
   const stateClass = typeof accentNum === "number" ? orderedStates[accentNum] : accentNum;
