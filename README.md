@@ -465,7 +465,7 @@ Performance was measured using **accuracy, precision, recall, and F1-score** for
 
 
 
-#3 Accent-Aware Cuisine Recommendation — Model & Demo
+# 3 Accent-Aware Cuisine Recommendation — Model & Demo
 
 **One-line:** Real-time accent detection (HuBERT → DANN) that infers regional background and surfaces culturally-relevant cuisine recommendations.
 
