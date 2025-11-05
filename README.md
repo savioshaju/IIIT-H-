@@ -17,6 +17,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
 ---
 
 ## Table of Contents
+
 - [Objective](#objective)
 - [1. Develop a Native Language Identification Model](#1-develop-a-native-language-identification-model)
   - [Goal](#goal)
@@ -30,6 +31,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Confusion Matrix — MFCC Baseline Model](#confusion-matrix--mfcc-baseline-model)
   - [Key Takeaways](#key-takeaways)
   - [Dataset — IndicAccentDB_16k](#dataset--indicaccentdb_16k)
+
 - [2. Generalization Across Age Groups](#2-generalization-across-age-groups)
   - [Objective](#objective-1)
   - [Experimental Setup](#experimental-setup)
@@ -41,6 +43,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [HuBERT-Based Model](#hubert-based-model)
   - [Visualizations](#visualizations)
   - [Visualizations (HuBERT Model)](#visualizations-hubert-model)
+
 - [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
   - [Demo Videos](#🎥-demo-videos)
   - [Model (Concise)](#model-concise)
@@ -53,6 +56,17 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
     - [5. Run the Web Application](#5-run-the-web-application)
     - [6. Open in Browser](#6-open-in-browser)
 
+- [4 .Word-Level vs. Sentence-Level Accent Detection](#-word-level-vs-sentence-level-accent-detection)
+  - [Dataset Preparation](#1️-dataset-preparation)
+  - [Feature Extraction](#2️-feature-extraction)
+  - [Model Architecture](#3️-model-architecture)
+  - [Training & Validation](#4️-training--validation)
+  - [Evaluation Metrics](#5️-evaluation-metrics)
+  - [Performance Results](#6️-performance-results)
+  - [Observations & Insights](#7️-observations--insights)
+  - [Conclusion](#8️-conclusion)
+
+ 
       
 ##  Objective
 
@@ -582,3 +596,115 @@ You’ll get the main interface where users can:
 
 * Record or upload an English phrase.
 * System detects accent → infers region → shows top cuisine recommendations.
+
+##  Word-Level vs. Sentence-Level Accent Detection
+
+This section investigates **accent classification at two linguistic granularities** using HuBERT embeddings: word-level and sentence-level. The goal is to analyze how segment length and context affect model performance.
+
+---
+
+### 1️ Dataset Preparation
+
+The `IndicAccentDB_16k` dataset was processed to generate **two synchronized datasets**:
+
+- **Sentence-level clips:** Full utterances capturing complete prosodic and phonetic patterns of a speaker.  
+- **Word-level clips:** Individual words extracted using **Whisper-based word timestamps** for high temporal precision.  
+
+Both datasets were partitioned into **train, validation, and test splits**, maintaining **accent label consistency** across splits:
+
+---
+
+### 2️ Feature Extraction
+
+To capture rich accent information, **HuBERT embeddings** were used:
+
+1. **Model:** `facebook/hubert-base-ls960`  
+2. **Process:** Each waveform (word or sentence) is passed through HuBERT.  
+3. **Representation:** Mean-pooled embedding of **768 dimensions** per clip.  
+4. **Output:** Feature matrices:
+
+
+Each embedding is paired with its **accent label** for classification.
+
+---
+
+### 3️ Model Architecture
+
+A **feed-forward neural network (FFNN)** was trained separately for both levels:
+
+- **Input:** 768D HuBERT embedding  
+- **Hidden Layers:** 512 → 256 neurons  
+- **Activation:** ReLU + Dropout (0.4)  
+- **Output Layer:** Softmax over 6 accent classes  
+- **Loss Function:** CrossEntropy with **class-weighting** to handle imbalance  
+- **Optimizer:** Adam or AdamW  
+- **Learning Rate:** 1e-4  
+- **Batch Size:** 64  
+- **Epochs:** 25–35  
+
+---
+
+### 4️ Training & Validation
+
+- Models were trained using **GPU acceleration** if available.  
+- **Class imbalance** was addressed using **weighted loss** based on accent frequencies.  
+- **Validation F1-score** was monitored to save the best-performing model.  
+- **Learning rate scheduler** (StepLR or CosineAnnealingLR) was used for stable convergence.
+
+---
+
+### 5️ Evaluation Metrics
+
+Models were evaluated on the **test split** using:
+
+- **Overall Accuracy**  
+- **Per-class Precision, Recall, F1-score**  
+- **Macro and Weighted Averages**  
+- **Confusion Matrix** for interpretability  
+
+---
+
+### 6️ Performance Results
+
+| Level       | Test Accuracy | Macro F1 | Weighted F1 |
+|------------|---------------|-----------|-------------|
+| Word-Level | 0.8087        | 0.7963    | 0.8095      |
+| Sentence-Level | 0.9967     | 0.9975    | 0.9967      |
+
+**Word-Level (Test Set):**
+
+| Accent          | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|--------|
+| Andhra Pradesh  | 0.7988    | 0.7829 | 0.7908   | 2,064  |
+| Gujarat         | 0.6127    | 0.8184 | 0.7008   | 435    |
+| Jharkhand       | 0.8202    | 0.8210 | 0.8206   | 1,011  |
+| Karnataka       | 0.8498    | 0.8224 | 0.8359   | 1,982  |
+| Kerala          | 0.8341    | 0.7902 | 0.8115   | 1,959  |
+| Tamil           | 0.8069    | 0.8304 | 0.8185   | 2,093  |
+
+**Sentence-Level (Test Set):**
+
+| Accent          | Precision | Recall | F1-Score | Support |
+|-----------------|-----------|--------|----------|--------|
+| Andhra Pradesh  | 0.9962    | 0.9962 | 0.9962   | 266    |
+| Gujarat         | 1.0000    | 1.0000 | 1.0000   | 53     |
+| Jharkhand       | 1.0000    | 1.0000 | 1.0000   | 125    |
+| Karnataka       | 1.0000    | 0.9961 | 0.9980   | 254    |
+| Kerala          | 0.9960    | 0.9960 | 0.9960   | 251    |
+| Tamil           | 0.9926    | 0.9963 | 0.9945   | 271    |
+
+---
+
+
+### 7️ Observations & Insights
+
+- **Word-Level:** Captures subtle phonetic cues at a fine-grained level. Performance is moderate due to **limited context** and **higher variability** across individual words. Useful for **real-time or streaming applications**.  
+- **Sentence-Level:** Benefits from **longer context**, capturing prosody, rhythm, and coarticulation effects, leading to near-perfect classification.  
+- **Trade-Off:** Sentence-level models require longer audio input but achieve higher accuracy; word-level models are faster and more flexible but slightly less reliable.  
+- **Feature Quality:** HuBERT embeddings strongly outperform traditional MFCC features at both granularities.  
+
+---
+
+### 8️ Conclusion
+
+Sentence-level accent detection is **more robust and accurate**, while word-level detection allows **fine-grained, low-latency analysis**. Both approaches are critical for **accent-aware AI systems**, depending on real-world application constraints such as **utterance length** and **latency requirements**.
