@@ -19,7 +19,7 @@ if not os.path.exists(MODEL_STATE_PATH):
     raise FileNotFoundError(f"Model checkpoint not found: {MODEL_STATE_PATH}")
 
 model = DANNModel(input_dim=768, hidden_dim=512, num_classes=N_CLASSES, n_domains=4)
-state = torch.load(MODEL_STATE_PATH, map_location=DEVICE)
+state = torch.load(MODEL_STATE_PATH, map_location=DEVICE, weights_only=True)
 if isinstance(state, dict) and "model_state" in state:
     model.load_state_dict(state["model_state"])
 else:
