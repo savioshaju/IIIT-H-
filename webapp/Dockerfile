@@ -27,5 +27,5 @@ RUN pip install --upgrade pip setuptools wheel && \
         scipy==1.12.0
 
 EXPOSE 5000
-
+ENV WEB_CONCURRENCY=1
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
