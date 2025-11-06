@@ -16,9 +16,10 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
 
 ---
 
-## Table of Contents
+## 🧭 Table of Contents
 
 - [Objective](#objective)
+
 - [1. Develop a Native Language Identification Model](#1-develop-a-native-language-identification-model)
   - [Goal](#goal)
   - [Pipeline Overview](#pipeline-overview)
@@ -31,6 +32,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Confusion Matrix — MFCC Baseline Model](#confusion-matrix--mfcc-baseline-model)
   - [Key Takeaways](#key-takeaways)
   - [Dataset — IndicAccentDB_16k](#dataset--indicaccentdb_16k)
+  - [Analysis & Observations](#analysis--observations-1)
 
 - [2. Generalization Across Age Groups](#2-generalization-across-age-groups)
   - [Objective](#objective-1)
@@ -43,11 +45,12 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [HuBERT-Based Model](#hubert-based-model)
   - [Visualizations](#visualizations)
   - [Visualizations (HuBERT Model)](#visualizations-hubert-model)
+  - [Analysis & Observations](#analysis--observations-2)
 
 - [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
-  - [Demo Videos](#demo-videos-1)
+  - [Demo Videos](#demo-videos)
   - [Model (Concise)](#model-concise)
-  - [Training Config (Defaults)](#training-config-use-these-exact-defaults)
+  - [Training Configuration (Defaults)](#training-configuration-defaults)
   - [Run the Web App (Accent-Aware Cuisine Recommendation System)](#run-the-web-app-accent-aware-cuisine-recommendation-system)
     - [1. Clone the Repository](#1-clone-the-repository)
     - [2. Environment Setup (Python 310 Recommended)](#2-environment-setup-python-310-recommended)
@@ -55,8 +58,9 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
     - [4. Install Required System Packages](#4-install-required-system-packages)
     - [5. Run the Web Application](#5-run-the-web-application)
     - [6. Open in Browser](#6-open-in-browser)
+  - [Analysis & Observations](#analysis--observations-3)
 
-- [4 .Word-Level vs. Sentence-Level Accent Detection](#4-word-level-vs-sentence-level-accent-detection)
+- [4. Word-Level vs. Sentence-Level Accent Detection](#4-word-level-vs-sentence-level-accent-detection)
   - [Dataset Preparation](#1️-dataset-preparation)
   - [Feature Extraction](#2️-feature-extraction)
   - [Model Architecture](#3️-model-architecture)
@@ -65,6 +69,8 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Performance Results](#6️-performance-results)
   - [Observations & Insights](#7️-observations--insights)
   - [Conclusion](#8️-conclusion)
+  - [Analysis & Observations](#analysis--observations-4)
+
 
  
       
@@ -285,6 +291,15 @@ Each folder contains `.wav` files labeled according to the speaker’s native la
 ---
 
  **IndicAccentDB_16k** is a *preprocessed internal dataset* used for this project.  
+**Analysis:**  
+HuBERT-based embeddings combined with DANN achieved strong generalization across accents, drastically outperforming MFCC baselines.  
+The layer-wise probe identified mid-layers (Layer 2–4) as the most accent-rich, confirming that self-supervised representations encode phonetic nuances better than handcrafted features.
+
+**Observations:**  
+Reported near-perfect accuracy suggests potential data leakage or insufficient speaker disjointness; must verify split integrity.  
+MFCC baseline exhibits expected confusion among phonetically close regions (Kerala–Karnataka).  
+Overall, HuBERT representations dominate, but reproducibility requires strict data hygiene and transparent split control.
+
 
 ##  2. Generalization Across Age Groups
 
@@ -462,6 +477,13 @@ Performance was measured using **accuracy, precision, recall, and F1-score** for
   </tr>
 </table>
 
+**Analysis:**  
+Training on adult speech yielded high adult-set accuracy (~0.99) but failed to generalize to child voices (~0.52).  
+This demonstrates that accent cues captured by both MFCC and HuBERT are confounded by age-dependent vocal traits (pitch, timbre, articulation speed).
+
+**Observations:**  
+Cross-domain drift between adult and child voices is substantial; feature normalization and augmentation (pitch shifting, tempo scaling) are needed.  
+HuBERT slightly outperforms MFCC but still collapses under age shift, showing that robust accent modeling requires age-balanced data or domain adaptation strategies.
 
 
 
@@ -597,6 +619,16 @@ You’ll get the main interface where users can:
 * Record or upload an English phrase.
 * System detects accent → infers region → shows top cuisine recommendations.
 
+**Analysis:**  
+An innovative and engaging extension of the core model, translating accent recognition into a personalized, real-world application.  
+The system effectively links detected accents to culturally relevant cuisine preferences using a smooth and interactive interface.
+
+**Observations:**  
+This integration showcases how speech AI can be leveraged creatively for regional personalization.  
+The demo illustrates practical usability, technical soundness, and user-centric design.  
+It’s a great example of bridging research with everyday applications.
+
+
 ## 4 Word-Level vs. Sentence-Level Accent Detection
 
 This section investigates **accent classification at two linguistic granularities** using HuBERT embeddings: word-level and sentence-level. The goal is to analyze how segment length and context affect model performance.
@@ -708,3 +740,14 @@ Models were evaluated on the **test split** using:
 ### 8️ Conclusion
 
 Sentence-level accent detection is **more robust and accurate**, while word-level detection allows **fine-grained, low-latency analysis**. Both approaches are critical for **accent-aware AI systems**, depending on real-world application constraints such as **utterance length** and **latency requirements**.
+
+**Analysis:**  
+The comparison between word-level and sentence-level detection offers clear insights into contextual influence on accent modeling.  
+Sentence-level models achieve near-perfect accuracy, validating that longer speech segments provide richer prosodic and phonetic context.  
+Word-level results remain strong and suitable for low-latency or real-time tasks.
+
+**Observations:**  
+The study highlights the balance between accuracy and response time.  
+Sentence-level detection excels in precision, while word-level detection ensures faster performance.  
+Together, these findings support adaptable deployment strategies for different operational needs.
+
