@@ -16,16 +16,10 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
 
 ---
 
-## 🧭 Table of Contents
-
-- [Objective](#objective)
-
 - [1. Develop a Native Language Identification Model](#1-develop-a-native-language-identification-model)
   - [Goal](#goal)
   - [Pipeline Overview](#pipeline-overview)
   - [Model Development & Training](#model-development--training)
-    - [HuBERT-Based Model (Self-Supervised Representations)](#hubert-based-model-self-supervised-representations)
-    - [MFCC-Based Model (Traditional Acoustic Features)](#mfcc-based-model-traditional-acoustic-features)
   - [Final Classification Reports](#final-classification-reports)
   - [HuBERT Layer-wise Performance](#hubert-layer-wise-performance)
   - [Confusion Matrix — HuBERT + DANN Model](#confusion-matrix--hubert--dann-model)
@@ -48,16 +42,10 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Analysis & Observations](#analysis--observations-2)
 
 - [3. Accent-Aware Cuisine Recommendation — Model & Demo](#3-accent-aware-cuisine-recommendation--model--demo)
-  - [Demo Videos](#demo-videos)
+  - [Demo Videos](#demo-videos-1)
   - [Model (Concise)](#model-concise)
   - [Training Configuration (Defaults)](#training-configuration-defaults)
-  - [Run the Web App (Accent-Aware Cuisine Recommendation System)](#run-the-web-app-accent-aware-cuisine-recommendation-system)
-    - [1. Clone the Repository](#1-clone-the-repository)
-    - [2. Environment Setup (Python 310 Recommended)](#2-environment-setup-python-310-recommended)
-    - [3. Install Requirements](#3-install-requirements)
-    - [4. Install Required System Packages](#4-install-required-system-packages)
-    - [5. Run the Web Application](#5-run-the-web-application)
-    - [6. Open in Browser](#6-open-in-browser)
+  - [Run the Web App](#run-the-web-app-accent-aware-cuisine-recommendation-system)
   - [Analysis & Observations](#analysis--observations-3)
 
 - [4. Word-Level vs. Sentence-Level Accent Detection](#4-word-level-vs-sentence-level-accent-detection)
@@ -71,8 +59,6 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Conclusion](#8️-conclusion)
   - [Analysis & Observations](#analysis--observations-4)
 
-
- 
       
 ##  Objective
 
@@ -291,6 +277,9 @@ Each folder contains `.wav` files labeled according to the speaker’s native la
 ---
 
  **IndicAccentDB_16k** is a *preprocessed internal dataset* used for this project.  
+
+ ### Analysis & Observations
+
 **Analysis:**  
 HuBERT-based embeddings combined with DANN achieved strong generalization across accents, drastically outperforming MFCC baselines.  
 The layer-wise probe identified mid-layers (Layer 2–4) as the most accent-rich, confirming that self-supervised representations encode phonetic nuances better than handcrafted features.
@@ -477,6 +466,8 @@ Performance was measured using **accuracy, precision, recall, and F1-score** for
   </tr>
 </table>
 
+### Analysis & Observations
+
 **Analysis:**  
 Training on adult speech yielded high adult-set accuracy (~0.99) but failed to generalize to child voices (~0.52).  
 This demonstrates that accent cues captured by both MFCC and HuBERT are confounded by age-dependent vocal traits (pitch, timbre, articulation speed).
@@ -619,6 +610,8 @@ You’ll get the main interface where users can:
 * Record or upload an English phrase.
 * System detects accent → infers region → shows top cuisine recommendations.
 
+### Analysis & Observations
+
 **Analysis:**  
 An innovative and engaging extension of the core model, translating accent recognition into a personalized, real-world application.  
 The system effectively links detected accents to culturally relevant cuisine preferences using a smooth and interactive interface.
@@ -740,6 +733,8 @@ Models were evaluated on the **test split** using:
 ### 8️ Conclusion
 
 Sentence-level accent detection is **more robust and accurate**, while word-level detection allows **fine-grained, low-latency analysis**. Both approaches are critical for **accent-aware AI systems**, depending on real-world application constraints such as **utterance length** and **latency requirements**.
+
+### Analysis & Observations
 
 **Analysis:**  
 The comparison between word-level and sentence-level detection offers clear insights into contextual influence on accent modeling.  
