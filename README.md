@@ -289,6 +289,48 @@ Reported near-perfect accuracy suggests potential data leakage or insufficient s
 MFCC baseline exhibits expected confusion among phonetically close regions (Kerala–Karnataka).  
 Overall, HuBERT representations dominate, but reproducibility requires strict data hygiene and transparent split control.
 
+# How to Run the Project
+
+## Pre-Step – Download the Dataset
+Download the **IndicAccentDB** dataset and place it in the project root directory.
+
+## Step 1 – Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+## Step 2 – Split the Dataset
+```bash
+python split.py
+```
+
+## Step 3 – Resample Audio to 16kHz Mono
+```bash
+python resample_to_16k_mono.py
+```
+
+## Step 4 – Extract HuBERT Features
+```bash
+python nli_experiments/HuBERT/extract_hubert_features.py
+```
+
+## Step 5 – Train the HuBERT-Based Accent Classifier
+```bash
+python nli_experiments/HuBERT/train_accent_classifier.py
+```
+
+## Step 6 – Extract MFCC Features (Baseline)
+```bash
+python nli_experiments/MFCC/generate_metadata.py
+python nli_experiments/MFCC/extract_mfcc.py
+```
+
+## Step 7 – Train the MFCC Baseline Classifier
+```bash
+python nli_experiments/MFCC/train_mfcc_baseline.py
+```
+
+
 
 ##  2. Generalization Across Age Groups
 
@@ -733,6 +775,42 @@ Models were evaluated on the **test split** using:
 ### 8️ Conclusion
 
 Sentence-level accent detection is **more robust and accurate**, while word-level detection allows **fine-grained, low-latency analysis**. Both approaches are critical for **accent-aware AI systems**, depending on real-world application constraints such as **utterance length** and **latency requirements**.
+
+# How to Run the Project
+
+## Pre-Step – Download the Dataset
+Download the **IndicAccentDB** dataset and place it in the project root directory.
+
+## Step 1 – Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+## Step 2 – Split the Dataset
+```bash
+python accent_level_exp/split.py
+```
+
+## Step 3 – Run t.py
+```bash
+python accent_level_exp/t.py
+```
+
+## Step 4 – Extract MFCC Features
+```bash
+python accent_level_exp/mfccfeature.py
+```
+
+## Step 5 – Extract HuBERT Features
+```bash
+python accent_level_exp/hubertfeature.py
+```
+
+## Step 6 – Train the Model
+```bash
+python accent_level_exp/train.py
+```
+
 
 ### Analysis & Observations
 
