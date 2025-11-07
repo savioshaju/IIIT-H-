@@ -27,6 +27,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Key Takeaways](#key-takeaways)
   - [Dataset — IndicAccentDB_16k](#dataset--indicaccentdb_16k)
   - [Analysis & Observations](#analysis--observations-1)
+  - [**How to Run the Project (NLI Model)**](#how-to-run-the-project)
 
 - [2. Generalization Across Age Groups](#2-generalization-across-age-groups)
   - [Objective](#objective-1)
@@ -58,6 +59,7 @@ It contributes to building **accent-aware AI systems**, enhancing **speech recog
   - [Observations & Insights](#7️-observations--insights)
   - [Conclusion](#8️-conclusion)
   - [Analysis & Observations](#analysis--observations-4)
+  - [How to Run the Project (Word vs Sentence)](#how-to-run-the-project-1)
 
       
 ##  Objective
