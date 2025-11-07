@@ -7,7 +7,7 @@ DATASET_DIR = "IndicAccentDB_16k"
 OUTPUT_DIR = "transcripts"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-model = whisper.load_model("base")  # use "medium" if GPU allows
+model = whisper.load_model("base")  
 
 splits = ["train", "val", "test"]
 results = {}

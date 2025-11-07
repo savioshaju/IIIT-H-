@@ -13,7 +13,7 @@ import hashlib
 from tqdm import tqdm
 import os
 
-DEFAULT_BASE = "IndicAccentDB_split"  # change if your split lives elsewhere
+DEFAULT_BASE = "IndicAccentDB_clean_split"  # change if your split lives elsewhere
 
 # Default mapping: accent folder -> L1 language label
 DEFAULT_LANG_MAP = {

@@ -5,7 +5,7 @@ import torchaudio
 from tqdm import tqdm
 
 # === Paths ===
-BASE_DIR = "IndicAccentDB_split"
+BASE_DIR = "IndicAccentDB_clean_split"
 META_FILE = "metadata.csv"
 OUT_DIR = "mfcc_features"
 os.makedirs(OUT_DIR, exist_ok=True)
