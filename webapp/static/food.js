@@ -21,21 +21,29 @@ async function postAudioBlob(blob) {
     fd.append("audio", blob, "clip.wav");
 
     const res = await fetch("/predict", { method: "POST", body: fd });
-    const data = await res.json();
+
+    let data;
+    try {
+      const text = await res.text();
+      data = text ? JSON.parse(text) : {};
+    } catch (e) {
+      throw new Error("Invalid or empty JSON response from server.");
+    }
 
     if (!res.ok) throw new Error(data.error || "Prediction failed");
 
-    recStatus.textContent = "Ready ✅";
+    recStatus.textContent = "Ready";
     resultDiv.classList.remove("d-none");
-    accentText.textContent = `Accent: ${data.accent}`;
+    accentText.textContent = `Accent: ${data.label}`;
     confidenceText.textContent = `Confidence: ${(data.confidence * 100).toFixed(2)}%`;
 
     handleAccentResult(data.accent_index ?? data.accent);
   } catch (err) {
-    recStatus.textContent = "Error ❌";
-    alert(err.message);
+    recStatus.textContent = "Error";
+    alert(err.message || "Unknown error occurred.");
   }
 }
+
 
 recordBtn.addEventListener("click", async () => {
   if (!mediaRecorder || mediaRecorder.state === "inactive") {
