@@ -88,7 +88,7 @@ The project compares **traditional acoustic features (MFCCs)** with **self-super
 1. **Dataset:** `IndicAccentDB_16k` — audio samples (train / val / test) across six Indian languages:
    - Andhra Pradesh, Gujarat, Jharkhand, Karnataka, Kerala, Tamil Nadu
 2. **Feature Extraction**
-   - **MFCCs:** Standard 40 coefficients (+Δ, ΔΔ as needed)
+   - **MFCCs:** Standard 40 coefficients 
    - **HuBERT embeddings:** Extracted 13 hidden layers (Layer 0–12) using `facebook/hubert-base-ls960`
 3. **Model Architectures**
    - **CNNs:** 1D/2D variants for MFCCs and HuBERT feature maps  
