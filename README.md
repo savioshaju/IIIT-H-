@@ -1,4 +1,4 @@
-#  Native Language Identification of Indian English Speakers Using HuBERT
+#  Native Language Identification of Indian English Speakers
 
 This project leverages **HuBERT (Hidden Unit BERT)** to identify the **native language (L1)** of Indian English speakers based on their speech characteristics.  
 The model analyzes **acoustic patterns** from English utterances to detect subtle regional accent variations across Indian states.  
