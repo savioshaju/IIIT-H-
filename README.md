@@ -173,7 +173,7 @@ The project compares **traditional acoustic features (MFCCs)** with **self-super
 | 0 | 0.9850 | 0.9887 | 0.9869 | 266 |
 | 1 | 0.9811 | 0.9811 | 0.9811 | 53 |
 | 2 | 0.9762 | 0.9840 | 0.9801 | 125 |
-| 3 | 0.9960 | 0.9921 | 0.9941 | 254 |
+| 3 | 0.9874 | 0.9829 | 0.9851 | 254 |
 | 4 | 0.9879 | 0.9761 | 0.9820 | 251 |
 | 5 | 0.9853 | 0.9926 | 0.9890 | 271 |
 
@@ -185,11 +185,11 @@ The project compares **traditional acoustic features (MFCCs)** with **self-super
 #### MFCC
 | Class | Precision | Recall | F1-Score | Support |
 |------:|:---------:|:------:|:--------:|--------:|
-| 0 | 1.0000 | 0.9091 | 0.9524 | 44 |
+| 0 | 0.9723 | 0.9091 | 0.9394 | 44 |
 | 1 | 0.9528 | 0.9758 | 0.9641 | 124 |
 | 2 | 0.9744 | 0.4524 | 0.6179 | 252 |
 | 3 | 0.4457 | 0.9840 | 0.6135 | 250 |
-| 4 | 1.0000 | 0.4384 | 0.6096 | 276 |
+| 4 | 0.9438 | 0.4384 | 0.5961 | 276 |
 | 5 | 0.9845 | 0.9442 | 0.9639 | 269 |
 
 **Accuracy:** 73.74% 
@@ -203,7 +203,7 @@ The project compares **traditional acoustic features (MFCCs)** with **self-super
 |:------:|:-------:|:--------:|
 | 00 | 0.9963 | 0.9914 |
 | 01 | 0.9975 | 0.9951 |
-| 02 | 0.9963 | **1.0000** |
+| 02 | 0.9812 | 0.9865 |
 | 03 | 0.9951 | 0.9975 |
 | 04 | 0.9963 | 0.9963 |
 | 05 | 0.9938 | 0.9901 |
@@ -462,16 +462,17 @@ Performance was measured using **accuracy, precision, recall, and F1-score** for
 
 #### Adult Test Results
 
-**Accuracy: 0.9895**
+Accuracy: 0.9478
 
-| Accent | Precision | Recall | F1-score |
-| :--- | :---: | :---: | :---: |
-| andhra_pradesh | 0.99 | 1.00 | 0.99 |
-| gujarat | 1.00 | 1.00 | 1.00 |
-| jharkhand | 1.00 | 0.99 | 0.99 |
-| karnataka | 0.99 | 0.99 | 0.99 |
-| kerala | 1.00 | 0.98 | 0.99 |
-| tamil | 0.92 | 0.96 | 0.94 |
+| Accent          | Precision | Recall | F1-score |
+|-----------------|-----------|--------|----------|
+| andhra_pradesh  | 0.9441    | 0.9582 | 0.9511   |
+| gujarat         | 0.9318    | 0.9150 | 0.9233   |
+| jharkhand       | 0.9587    | 0.9462 | 0.9524   |
+| karnataka       | 0.9654    | 0.9380 | 0.9515   |
+| kerala          | 0.9463    | 0.9355 | 0.9409   |
+| tamil           | 0.9075    | 0.9287 | 0.9180   |
+
 
 #### Child Test Results
 
@@ -557,7 +558,6 @@ HuBERT slightly outperforms MFCC but still collapses under age shift, showing th
 | **device** | `cuda`\|`cpu` |
 | **input_dim** | `768` (HuBERT embedding dim) |
 | **hidden_dim** | `512` |
-| **num_classes** | `<your num accent classes>` |
 | **n_domains** | `4` (pseudo-domain clusters) |
 | **batch_size** | `64` |
 | **epochs** | `30` |
@@ -738,7 +738,7 @@ Models were evaluated on the **test split** using:
 | Level       | Test Accuracy | Macro F1 | Weighted F1 |
 |------------|---------------|-----------|-------------|
 | Word-Level | 0.8087        | 0.7963    | 0.8095      |
-| Sentence-Level | 0.9967     | 0.9975    | 0.9967      |
+| Sentence-Level |  0.9428    | 0.9975    | 0.9967      |
 
 **Word-Level (Test Set):**
 
@@ -755,12 +755,13 @@ Models were evaluated on the **test split** using:
 
 | Accent          | Precision | Recall | F1-Score | Support |
 |-----------------|-----------|--------|----------|--------|
-| Andhra Pradesh  | 0.9962    | 0.9962 | 0.9962   | 266    |
-| Gujarat         | 1.0000    | 1.0000 | 1.0000   | 53     |
-| Jharkhand       | 1.0000    | 1.0000 | 1.0000   | 125    |
-| Karnataka       | 1.0000    | 0.9961 | 0.9980   | 254    |
-| Kerala          | 0.9960    | 0.9960 | 0.9960   | 251    |
-| Tamil           | 0.9926    | 0.9963 | 0.9945   | 271    |
+| Andhra Pradesh | 0.9421 | 0.9556 | 0.9488 | 266 |
+| Gujarat        | 0.9347 | 0.9151 | 0.9248 | 53  |
+| Jharkhand      | 0.9582 | 0.9440 | 0.9511 | 125 |
+| Karnataka      | 0.9720 | 0.9457 | 0.9586 | 254 |
+| Kerala         | 0.9485 | 0.9362 | 0.9423 | 251 |
+| Tamil          | 0.9568 | 0.9627 | 0.9597 | 271 |
+
 
 ---
 
